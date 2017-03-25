@@ -24,6 +24,8 @@ def get_image(path):
 def generator(samples, batch_size = 32):
     correction = 0.20
     num_samples = len(samples)
+    print("\n Number of sample " + str(num_samples))
+
     while 1: # Loop forever so the generator never terminates
         for offset in range(0, num_samples, batch_size):
             print("\nRunning batch " + str(offset))
@@ -75,13 +77,16 @@ from keras.models import Sequential
 from keras.layers import Flatten, Dense, Lambda
 from keras.layers import Cropping2D
 from keras.layers import Conv2D
+from keras.layers import Dropout
 
 model = Sequential()
 model.add(Lambda(lambda x: x / 255.0 - 0.5, input_shape = (160, 320, 3))) # normalizes all images
 model.add(Cropping2D(cropping=((50,20), (0,0)), input_shape=(160,320,3)))
+model.add(Dropout(0.5))
 model.add(Conv2D(24, (5, 5), strides = (2, 2), activation = "relu"))
 model.add(Conv2D(36, (5, 5), strides = (2, 2), activation = "relu"))
 model.add(Conv2D(48, (5, 5), strides = (2, 2), activation = "relu"))
+model.add(Dropout(0.5))
 model.add(Conv2D(64, (3, 3), strides = (2, 2), activation = "relu"))
 model.add(Conv2D(64, (3, 3), strides = (2, 2), activation = "relu"))
 model.add(Flatten())
