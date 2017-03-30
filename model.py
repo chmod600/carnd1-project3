@@ -5,7 +5,7 @@ import pdb
 from sklearn.utils import shuffle
 import sklearn
 
-base_path = "/Users/Akshay/Desktop/p3/data/"
+base_path = "~/data/"
 lines = []
 
 with open(base_path + "driving_log.csv") as csvfile:
