@@ -28,11 +28,9 @@ def get_image(path):
 def generator(samples, batch_size = 32):
     correction = 0.20
     num_samples = len(samples)
-    print("\n Number of sample " + str(num_samples))
 
     while 1: # Loop forever so the generator never terminates
         for offset in range(0, num_samples, batch_size):
-            print("\nRunning batch " + str(offset))
             batch_samples = samples[offset:(offset + batch_size)]
 
             images = []
@@ -135,6 +133,7 @@ validation_generator = generator(validation_samples, batch_size)
 model.compile(loss='mse', optimizer='adam')
 # model.fit_generator(train_generator, steps_per_epoch = len(train_samples), validation_data = validation_generator, nb_val_samples = len(validation_samples), epochs = 3, verbose = 1)
 
+print("no of training samples - ", len(train_samples))
 # Start training the model, uses 3 Epochs since in our tests, beyond 3 epochs, losses started increasing
 model.fit_generator(train_generator, samples_per_epoch = len(train_samples), validation_data = validation_generator, nb_val_samples = len(validation_samples), nb_epoch = 3, verbose = 1)
 # Save model
