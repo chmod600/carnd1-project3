@@ -135,6 +135,6 @@ model.compile(loss='mse', optimizer='adam')
 
 print("no of training samples - ", len(train_samples))
 # Start training the model, uses 3 Epochs since in our tests, beyond 3 epochs, losses started increasing
-model.fit_generator(train_generator, samples_per_epoch = len(train_samples), validation_data = validation_generator, nb_val_samples = len(validation_samples), nb_epoch = 3, verbose = 1)
+model.fit_generator(train_generator, samples_per_epoch = len(train_samples), validation_data = validation_generator, nb_val_samples = len(validation_samples), nb_epoch = 10, verbose = 1)
 # Save model
 model.save('model.h5')
